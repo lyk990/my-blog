@@ -1,0 +1,44 @@
+.topBar {
+  color: white;
+  font-size: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 78px;
+  background: none;
+  cursor: pointer;
+}
+.topBar .left {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.topBar .left i {
+  width: 40px;
+  font-size: 16px;
+}
+.topBar .center {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.topBar .center div {
+  display: flex;
+  justify-content: center;
+  width: 78px;
+}
+.topBar .right {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+.topBar .right a {
+  color: #fff;
+  font-size: 12px;
+}
+.topBar .right .login {
+  margin-right: 40px;
+}
