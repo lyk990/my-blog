@@ -38,30 +38,24 @@ router.isReady().then(() => {
 
   // 全局路由守卫
   router.beforeEach(async (to, from, next) => {
-    console.log(to, '123123213')
     if (!store.state.user.routes.length || !to.fullPath) {
-      console.log(222222)
       const allRoutes = [...allAsyncRoutes, ...anyRoute];
       allRoutes.forEach((item) => {
         router.addRoute(item as unknown as RouteRecordRaw);
       });
       next()
-      console.log(router.getRoutes())
     } else {
       next();
     }
   });
   router.afterEach(() => {});
   // router.onReady((to, from, next) => {
-  //   console.log('qwqwqww')
   //   if (!store.state.user.routes.length || !to.fullPath) {
-  //     console.log(4444444444)
   //     const allRoutes = [...allAsyncRoutes, ...anyRoute];
   //     allRoutes.forEach((item) => {
   //       router.addRoute(item as unknown as RouteRecordRaw);
   //     });
   //     next()
-  //     console.log(router.getRoutes())
   //   } else {
   //     next();
   //   }

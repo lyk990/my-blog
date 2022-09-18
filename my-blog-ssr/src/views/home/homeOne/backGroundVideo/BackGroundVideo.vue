@@ -15,9 +15,6 @@
 </template>
 
 <script lang="ts" setup name="BackGroundVideo">
-// :style="{ width: clientWidth, height: clientHeight }"
-// const clientWidth = `${document.documentElement.clientWidth}px`;
-// const clientHeight = `${document.documentElement.clientHeight}px`;
 </script>
 <style lang="less">
 @import url('@/style/home/backGroundVideo.less');

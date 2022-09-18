@@ -40,7 +40,6 @@ export default defineComponent({
     onMounted(() => {
       routeMetaTitle.topBar = cloneDeep(JSON.parse(window.localStorage.topBar))
       const store = useStore()
-      console.log(store.state.user.abpRole)
     });
     const router = useRouter();
     let routeMetaTitle: any = reactive({

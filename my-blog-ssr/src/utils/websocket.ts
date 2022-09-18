@@ -13,7 +13,6 @@ function useWebSocket(handleMessage: () => {}) {
     ws.addEventListener('message', handleMessage, false);
   };
   const handleOpen = () => {
-    console.log('websocket open');
     ws.send(
       JSON.stringify({
         a: '123123123'
@@ -21,10 +20,8 @@ function useWebSocket(handleMessage: () => {}) {
     );
   };
   const handleClose = () => {
-    console.log('websocket close');
   };
   const handleError = () => {
-    console.log('websocket error');
   };
   init();
   return ws;
