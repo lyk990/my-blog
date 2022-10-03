@@ -1,25 +1,26 @@
+/* eslint-disable no-console */
 // import { VueRouter } from 'vue-router/types/router';
 import { BaseTrack } from './track';
+
 export class Performance {
-  // TODO 时间单位: 毫秒
-  public static readonly timing = global.performance && global.performance.timing;
+  // TODO 注意上报的单位 现在是毫秒
+  public static readonly timing = window.performance && window.performance.timing;
+
   public static init() {
-  console.log(global.performance.nodeTiming)
     if (!this.timing) {
       console.warn('当前浏览器不支持performance API');
       return;
     }
-
-    global.addEventListener('load', () => {
+    // TODO上报各种时间指标
+    window.addEventListener('load', () => {
       BaseTrack.track(this.getTimings());
     });
   }
 
-  // 首页白屏时间
-  public static record(router: any) {
+  public static record(router?: any) {
     const setFPT = () => {
-      if (global.performance && global.performance.now) {
-        this.customFPT = global.performance.now();
+      if (window.performance && window.performance.now) {
+        this.customFPT = window.performance.now();
       }
     };
     return {
@@ -91,19 +92,21 @@ export class Performance {
     return Performance.timing.domComplete - Performance.timing.domInteractive;
   }
 
+  private static getFirstPaintTime() {
+    // first paint time, 首次渲染时间, 即白屏时间
+    return Math.round(
+      (window.performance.getEntriesByName &&
+        window.performance.getEntriesByName('first-paint') &&
+        window.performance.getEntriesByName('first-paint')[0] &&
+        window.performance.getEntriesByName('first-paint')[0].startTime) ||
+        this.customFPT
+    );
+  }
+
   private static getLoadTime() {
     // 页面load总耗时
     return Performance.timing.loadEventStart - Performance.timing.navigationStart;
   }
 
-  private static getFirstPaintTime() {
-    // first paint time, 首次渲染时间, 即白屏时间
-    return Math.round(
-      (global.performance.getEntriesByName &&
-        global.performance.getEntriesByName('first-paint') &&
-        global.performance.getEntriesByName('first-paint')[0] &&
-        global.performance.getEntriesByName('first-paint')[0].startTime) ||
-        this.customFPT
-    );
-  }
+  private static toSeconds(time: number) {}
 }

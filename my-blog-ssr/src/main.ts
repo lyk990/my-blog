@@ -25,19 +25,18 @@ VMdPreview.use(vuepressTheme, {
   Prism
 });
 // const app = createApp(App);
-  Performance.init();
-console.log(Performance, '123123123123')
+// Performance.init();
 export default function createApp() {
   const app = createSSRApp(App);
   const store = createSSRStore();
   const router = createSSRRouter();
-  const mixin = Performance.record(router);
+  // const mixin = Performance.record(router);
   sync(store, router);
   app.use(router);
   app.use(store, key);
   app.use(VMdPreview);
   app.use(ElementPlus);
   app.component('Header', Header);
-  mixins: [mixin];
+  // mixins: [mixin];
   return { app, router, store };
 }
