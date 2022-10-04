@@ -7,6 +7,7 @@ export class Performance {
   public static readonly timing = window.performance && window.performance.timing;
 
   public static init() {
+    console.log(window.performance.getEntries())
     if (!this.timing) {
       console.warn('当前浏览器不支持performance API');
       return;
