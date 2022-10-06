@@ -3,17 +3,19 @@ const Router = require("koa-router");
 const mongoose = require("mongoose");
 const bodyParser = require("koa-bodyparser");
 const cors = require("koa-cors");
+const users = require("./routes/api/users");
+const role = require("./routes/api/role");
+const article = require("./routes/api/category/article");
+const addArticleContent = require("./routes/api/category/content");
+const koajwt = require("koa-jwt");
+
 const app = new koa();
 const router = new Router();
 app.use(cors());
 app.use(bodyParser());
 app.use(router.routes());
 app.use(router.allowedMethods());
-const users = require("./routes/api/users");
-const role = require("./routes/api/role");
-const article = require("./routes/api/category/article");
-const addArticleContent = require("./routes/api/category/content");
-const koajwt = require("koa-jwt");
+// app.use(require('./middlewares/statsd')());
 app.use(koajwt({ secret: "secret" }));
 //  config  连接数据库
 const db = require("./config/keys").mongoURI;
@@ -71,7 +73,7 @@ const Ws = require("ws");
 
   function handleMessage(msg) {
     server.clients.forEach(function (item) {
-      item.send(msg+'');
+      item.send(msg + "");
     });
   }
   init();
