@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "agenthub": "agenthub start config.json && NODE_LOG_DIR=/tmp ENABLE_NODE_LOG=YES node app.js",
     "serve": "nodemon app.js",
     "nodemon": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
